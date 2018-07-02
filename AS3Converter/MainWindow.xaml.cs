@@ -30,7 +30,9 @@ namespace AS3Converter
         {
             string res = src;
             res = ConvertKeyWords(res);
+            res = ConvertSplit(res);
             res = ConvertVars(res);
+            res = ConvertParams(res);
             res = ConvertFunctions(res);
             return res;
         }
@@ -38,20 +40,44 @@ namespace AS3Converter
         private string ConvertKeyWords(string src)
         {
             string res = src;
-            res = src.Replace(":Number", ":double");
+            res = res.Replace(":Number", ":double");
+            res = res.Replace("[Inline] ", "");
+            res = res.Replace("for each", "foreach");
             return res;
         }
         
         private string ConvertVars(string src)
         {
-            string as3Pattern = @"var (\w+):(\w+)";
+            string as3Pattern = @"var\s+(\w+)\s*:\s*(\w+)";
             string unityPattern = @"$2 $1";
             return Regex.Replace(src, as3Pattern, unityPattern);
         }
         
+        private string ConvertSplit(string src)
+        {
+            string as3Pattern = "split\\([\"'](.)[\"']\\)";
+            string unityPattern = @"Split('$1')";
+            return Regex.Replace(src, as3Pattern, unityPattern);
+        }
+        
+        private string ConvertParams(string src)
+        {
+            string as3Pattern = @"function\s+(\w+)\s*(\(.*\))\s*:\s*(\w+)";
+            return Regex.Replace(src, as3Pattern, m => 
+                String.Format(@"function {0}{1}:{2}", m.Groups[1].Value, ConvertEachParam(m.Groups[2].Value), m.Groups[3].Value)
+                );
+        }
+
+        private string ConvertEachParam(string src)
+        {
+            string as3Pattern = @"(\w+):(\w+)";
+            string unityPattern = @"$2 $1";
+            return Regex.Replace(src, as3Pattern, unityPattern);
+        }
+
         private string ConvertFunctions(string src)
         {
-            string as3Pattern = @"function (\w+)(\(.*\)):(\w+)";
+            string as3Pattern = @"function\s+(\w+)\s*(\(.*\))\s*:\s*(\w+)";
             string unityPattern = @"$3 $1$2";
             return Regex.Replace(src, as3Pattern, unityPattern);
         }
