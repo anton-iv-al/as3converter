@@ -34,6 +34,7 @@ namespace AS3Converter
             res = ConvertVars(res);
             res = ConvertParams(res);
             res = ConvertFunctions(res);
+            res = ConvertProperties(res);
             return res;
         }
         
@@ -41,6 +42,8 @@ namespace AS3Converter
         {
             string res = src;
             res = res.Replace(":Number", ":double");
+            res = res.Replace(":Boolean", ":bool");
+            res = res.Replace(":String", ":string");
             res = res.Replace("[Inline] ", "");
             res = res.Replace("for each", "foreach");
             return res;
@@ -79,6 +82,13 @@ namespace AS3Converter
         {
             string as3Pattern = @"function\s+(\w+)\s*(\(.*\))\s*:\s*(\w+)";
             string unityPattern = @"$3 $1$2";
+            return Regex.Replace(src, as3Pattern, unityPattern);
+        }
+        
+        private string ConvertProperties(string src)
+        {
+            string as3Pattern = @"function\s+(get|set)\s+(\w+)\s*\(\)\s*:\s*(\w+)";
+            string unityPattern = @"$3 $2 { $1; }";
             return Regex.Replace(src, as3Pattern, unityPattern);
         }
 
