@@ -87,8 +87,23 @@ namespace AS3Converter
         
         private string ConvertProperties(string src)
         {
-            string as3Pattern = @"function\s+(get|set)\s+(\w+)\s*\(\)\s*:\s*(\w+)";
-            string unityPattern = @"$3 $2 { $1; }";
+            string res = src;
+            res = ConvertGetters(res);
+            res = ConvertSetters(res);
+            return res;
+        }
+        
+        private string ConvertGetters(string src)
+        {
+            string as3Pattern = @"function\s+get\s+(\w+)\s*\(\)\s*:\s*(\w+)";
+            string unityPattern = @"$2 $1 { get; }";
+            return Regex.Replace(src, as3Pattern, unityPattern);
+        }
+        
+        private string ConvertSetters(string src)
+        {
+            string as3Pattern = @"function\s+set\s+(\w+)\s*\(\s*\w+\s*:\s*(\w+)\s*\)\s*:\s*void";
+            string unityPattern = @"$2 $1 { set; }";
             return Regex.Replace(src, as3Pattern, unityPattern);
         }
 
