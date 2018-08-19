@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AS3Converter", "AS3Converter\AS3Converter.csproj", "{19E9AA77-1343-4F48-9734-BFDF507191A9}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AS3ConverterF", "AS3ConverterF\AS3ConverterF.fsproj", "{DA93122F-FD2C-4DF7-BA4D-8C2BC0F965C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{19E9AA77-1343-4F48-9734-BFDF507191A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19E9AA77-1343-4F48-9734-BFDF507191A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19E9AA77-1343-4F48-9734-BFDF507191A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA93122F-FD2C-4DF7-BA4D-8C2BC0F965C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA93122F-FD2C-4DF7-BA4D-8C2BC0F965C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA93122F-FD2C-4DF7-BA4D-8C2BC0F965C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA93122F-FD2C-4DF7-BA4D-8C2BC0F965C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
