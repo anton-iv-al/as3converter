@@ -33,7 +33,9 @@ namespace AS3Converter
         {
             string text = Clipboard.GetText();
 
-            string converted = AS3ToSharp.convert(text);
+            string converted = CSharpToRuby.convert( AS3ToCSharp.convert(text) );
+//            string converted = CSharpToRuby.convert(text);
+//            string converted = AS3ToCSharp.convert(text);
             Clipboard.SetDataObject(converted);
             OutputLabel.Content = converted;
         }

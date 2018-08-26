@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Library.fs" />
+    <Compile Include="FHelpers.fs" />
+    <Compile Include="AS3ToCSharp.fs" />
+    <Compile Include="CSharpToRuby.fs" />
     <None Include="Script.fsx" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
